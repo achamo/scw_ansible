@@ -32,6 +32,10 @@ class OcsAnsible(object):
           if env not in hostgroups:
             hostgroups[env] = { 'hosts': [] }
           hostgroups[env]['hosts'].append(server.get('public_ip').get('address'))
+        if 'public_ip' not in server:
+          continue
+        if server.get('public_ip') == None:
+          continue
         hostgroups['_meta']['hostvars'][server.get('public_ip').get('address')] = var
 
     if args.list == True:
