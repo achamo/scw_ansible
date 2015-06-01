@@ -6,8 +6,8 @@ setup(
     name = 'ocs_ansible',
     version = '0.0.1',
     packages = find_packages(),
-    install_requires = [ 'ocs-sdk' ],
+    install_requires = [ 'scaleway-sdk' ],
     entry_points = {
-      'console_scripts': [ 'ocs_inventory=ocs_ansible:main' ]
+      'console_scripts': [ 'scw_inventory=ocs_ansible:main' ]
     }
 )

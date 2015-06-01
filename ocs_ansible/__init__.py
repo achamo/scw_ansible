@@ -1,7 +1,7 @@
 import os
 import json
 import argparse
-from ocs_sdk.apis import ComputeAPI
+from scaleway.apis import ComputeAPI
 
 class OcsAnsible(object):
 
