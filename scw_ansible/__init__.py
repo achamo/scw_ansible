@@ -3,7 +3,7 @@ import json
 import argparse
 from scaleway.apis import ComputeAPI
 
-class OcsAnsible(object):
+class ScwAnsible(object):
 
   def __init__(self):
     args = self.parse_args()
@@ -57,4 +57,4 @@ class OcsAnsible(object):
 
 
 def main():
-  OcsAnsible()
+  ScwAnsible()
