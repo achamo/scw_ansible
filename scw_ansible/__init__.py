@@ -13,9 +13,10 @@ class ScwAnsible(object):
     if args.host != None:
       print json.dumps({})
     else:
-      api = ComputeAPI(auth_token=os.environ['OCS_TOKEN'])
+      api = ComputeAPI(auth_token=os.environ['SCW_TOKEN'])
       hostgroups = { '_meta': { 'hostvars': {} } }
       for server in api.query().servers.get()['servers']:
+        name = server.get('name')
         if server.get('state') != 'running':
           continue
         var = {}
@@ -31,12 +32,14 @@ class ScwAnsible(object):
         for env in environments:
           if env not in hostgroups:
             hostgroups[env] = { 'hosts': [] }
-          hostgroups[env]['hosts'].append(server.get('public_ip').get('address'))
+          hostgroups[env]['hosts'].append(name)
         if 'public_ip' not in server:
           continue
         if server.get('public_ip') == None:
           continue
-        hostgroups['_meta']['hostvars'][server.get('public_ip').get('address')] = var
+        var['ansible_ssh_host'] = server.get('public_ip').get('address')
+        var['scw'] = server
+        hostgroups['_meta']['hostvars'][name] = var
 
     if args.list == True:
       print json.dumps(hostgroups)
