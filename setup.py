@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'scw_ansible',
-    version = '0.0.1',
+    version = '0.0.2',
     packages = find_packages(),
     install_requires = [ 'scaleway-sdk' ],
     entry_points = {
